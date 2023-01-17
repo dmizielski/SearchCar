@@ -1,10 +1,12 @@
 {
     "cars": [
         {
-        "carBrand": "Mercedes-Benz", "carModel": ["CLK", "Klasa C", "Klasa E"] 
+        "carBrand": "Mercedes-Benz", 
+        "carModel": ["CLK", "Klasa C", "Klasa E"] 
         },
         {
-        "carBrand": "BMW", "carModel": ["Seria 1", "Seria 3", "Seria 5"]
+        "carBrand": "BMW", 
+        "carModel": ["Seria 1", "Seria 3", "Seria 5"]
         }
     ]
 }

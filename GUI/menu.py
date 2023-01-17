@@ -9,13 +9,44 @@ DATA_PATH = "../data/cars.json"
 class MainWindow(qtw.QWidget):
 	def __init__(self):
 		super().__init__()
+
+		self.setFixedSize(640, 480)
 		
 		with open(DATA_PATH, "r") as read_file:
 			data = json.load(read_file)
-			# for item in data['cars']['carBrand']:
-			# 	print(item)
-			# print(data['cars']['carBrand'])
+			# for key, item in data.items():
+			# 	for name in item:
+			# 		print(name)
+			# 	print(key)
+			# for key, value in data.items():
+			# 	print(value)
+			# print(data['cars'])
+			# print(data['cars'][0])
+			# for listLength in data['cars']
+			listLength = len(data['cars']) - 1
+			carList = []
+			carBrand = []
+			# for index in len(data['cars']):
+			# 	print(data['cars'][index].items())
+			# print(data['cars'])
+			for index in data['cars']:
+				# print(index)
+				for key, value in index.items():
+					carBrand.append(index)
+					print(f"{key} -> {value} TU JESTEM")
+			print(f"{carBrand} -> LISTA MAREK SAMOCHODÓW")
+			# for key, value in data['cars'][listLength].items():
+			# 	for car in value:
+			# 		print(value)
+			# 		if key == "carModel":
+			# 			carList.append(car)
 			
+			# print(f"Marka Twojego wybranego samochodu to {carList}Lista Twoich samochodów to: {carList}")
+			print(s)
+			# carModels = [(key, value) for key, values in data.items() for value in values]
+			# for model in carModels:
+			# 	print(model)
+
 			# Add a title
 			self.setWindowTitle("SearchCar")
 			
@@ -23,16 +54,20 @@ class MainWindow(qtw.QWidget):
 			self.setLayout(qtw.QVBoxLayout())
 			
 			# Create label
-			label = qtw.QLabel(data['cars'])
+			label = qtw.QLabel('chuj')
 			
 			# Change font size of label
 			label.setFont(qtg.QFont("Helvetica", 18))
 			self.layout().addWidget(label)
 
-			# Create vehicle name
+			# Show car brand
 			my_car = qtw.QComboBox(self)
+			# Show brand models
+			my_carList = qtw.QComboBox(self)
+			# Move carList ComboBox
+			my_carList.move(105, 0 )
 			# Adding car pool
-			# my_car.addItem()
+			my_carList.addItems(carList)
 
 			# Exit button
 			exit_btn = qtw.QPushButton("Wyjdź", clicked = lambda: sys.exit())
