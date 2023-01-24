@@ -1,19 +1,20 @@
+import sys, os, json
 from pathlib import Path
+from src import source
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
-import sys
-import json
 
-DATA_PATH = "../data/cars.json"
+DATA_PATH = "./data/cars.json"
 
 class MainWindow(qtw.QWidget):
 	def __init__(self):
 		super().__init__()
 
 		self.setFixedSize(640, 480)
-		
+
 		with open(DATA_PATH, "r") as read_file:
 			data = json.load(read_file)
+			print(os.getcwd())
 			# for key, item in data.items():
 			# 	for name in item:
 			# 		print(name)
@@ -23,18 +24,25 @@ class MainWindow(qtw.QWidget):
 			# print(data['cars'])
 			# print(data['cars'][0])
 			# for listLength in data['cars']
-			listLength = len(data['cars']) - 1
+			# listLength = len(data['cars']) - 1
 			carList = []
 			carBrand = []
 			# for index in len(data['cars']):
 			# 	print(data['cars'][index].items())
 			# print(data['cars'])
-			for index in data['cars']:
-				# print(index)
-				for key, value in index.items():
-					carBrand.append(index)
-					print(f"{key} -> {value} TU JESTEM")
-			print(f"{carBrand} -> LISTA MAREK SAMOCHODÓW")
+			# print(data['cars'][0]['carBrand'])
+			for label in data['cars']:
+				for key, value in label.items():
+					if key == 'carBrand':
+						carBrand.append(value)
+					print(f'{key} -> {value}')
+			print(carBrand)
+			# for index in data['cars']:
+			# 	# print(index)
+			# 	for key, value in index.items():
+			# 		carBrand.append(index)
+			# 		print(f"{key} -> {value} TU JESTEM")
+			# print(f"{carBrand} -> LISTA MAREK SAMOCHODÓW")
 			# for key, value in data['cars'][listLength].items():
 			# 	for car in value:
 			# 		print(value)
@@ -42,7 +50,6 @@ class MainWindow(qtw.QWidget):
 			# 			carList.append(car)
 			
 			# print(f"Marka Twojego wybranego samochodu to {carList}Lista Twoich samochodów to: {carList}")
-			print(s)
 			# carModels = [(key, value) for key, values in data.items() for value in values]
 			# for model in carModels:
 			# 	print(model)
@@ -67,7 +74,10 @@ class MainWindow(qtw.QWidget):
 			# Move carList ComboBox
 			my_carList.move(105, 0 )
 			# Adding car pool
-			my_carList.addItems(carList)
+			my_car.addItems(carBrand)
+			print(source.getBrandData())
+			# Adding action to combo box, if given carBrand is chosen my_carList lists cars of specified carBrand
+			# my_car.activated()
 
 			# Exit button
 			exit_btn = qtw.QPushButton("Wyjdź", clicked = lambda: sys.exit())
