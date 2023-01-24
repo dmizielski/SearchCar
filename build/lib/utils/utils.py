@@ -17,5 +17,10 @@ def getBrandData(data=DATA_PATH):
 	print("I am here!")
 
 def getBrandName(data=DATA_PATH):
+	carBrand = []
 	file = openFile()
-	print(f'This is it -> {file}')
+	for label in file['cars']:
+				for key, value in label.items():
+					if key == 'carBrand':
+						carBrand.append(value)
+	print(f'This is it -> {carBrand}')
